@@ -1,0 +1,90 @@
+﻿@model ProjetsWebLicencePro.Models.personne
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>personne</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.siteweb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.siteweb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.parcours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.parcours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entreprise.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entreprise.nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.promo.theme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promo.theme)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

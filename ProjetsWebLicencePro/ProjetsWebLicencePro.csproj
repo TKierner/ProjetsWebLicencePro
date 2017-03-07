@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -196,30 +198,98 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\categoriesController.cs" />
+    <Compile Include="Controllers\entreprisesController.cs" />
+    <Compile Include="Controllers\fonctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\personnesController.cs" />
+    <Compile Include="Controllers\projetsController.cs" />
+    <Compile Include="Controllers\promoesController.cs" />
+    <Compile Include="Controllers\realisationsController.cs" />
+    <Compile Include="Controllers\tachesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\categorie.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\entreprise.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\fonction.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\licence_mmi.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>licence_mmi.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\licence_mmi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\licence_mmi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>licence_mmi.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\personne.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\projet.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\promo.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\realisation.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tache.cs">
+      <DependentUpon>licence_mmi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\licence_mmi.mdf" />
+    <Content Include="App_Data\licence_mmi_log.ldf">
+      <DependentUpon>licence_mmi.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\licence_mmi.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>licence_mmi.edmx</DependentUpon>
+      <LastGenOutput>licence_mmi.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\licence_mmi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>licence_mmi.edmx</DependentUpon>
+      <LastGenOutput>licence_mmi.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\licence_mmi.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>licence_mmi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\licence_mmi.edmx.diagram">
+      <DependentUpon>licence_mmi.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -267,9 +337,49 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\categories\Create.cshtml" />
+    <Content Include="Views\categories\Delete.cshtml" />
+    <Content Include="Views\categories\Details.cshtml" />
+    <Content Include="Views\categories\Edit.cshtml" />
+    <Content Include="Views\categories\Index.cshtml" />
+    <Content Include="Views\entreprises\Create.cshtml" />
+    <Content Include="Views\entreprises\Delete.cshtml" />
+    <Content Include="Views\entreprises\Details.cshtml" />
+    <Content Include="Views\entreprises\Edit.cshtml" />
+    <Content Include="Views\entreprises\Index.cshtml" />
+    <Content Include="Views\fonctions\Create.cshtml" />
+    <Content Include="Views\fonctions\Delete.cshtml" />
+    <Content Include="Views\fonctions\Details.cshtml" />
+    <Content Include="Views\fonctions\Edit.cshtml" />
+    <Content Include="Views\fonctions\Index.cshtml" />
+    <Content Include="Views\personnes\Create.cshtml" />
+    <Content Include="Views\personnes\Delete.cshtml" />
+    <Content Include="Views\personnes\Details.cshtml" />
+    <Content Include="Views\personnes\Edit.cshtml" />
+    <Content Include="Views\personnes\Index.cshtml" />
+    <Content Include="Views\projets\Create.cshtml" />
+    <Content Include="Views\projets\Delete.cshtml" />
+    <Content Include="Views\projets\Details.cshtml" />
+    <Content Include="Views\projets\Edit.cshtml" />
+    <Content Include="Views\projets\Index.cshtml" />
+    <Content Include="Views\promoes\Create.cshtml" />
+    <Content Include="Views\promoes\Delete.cshtml" />
+    <Content Include="Views\promoes\Details.cshtml" />
+    <Content Include="Views\promoes\Edit.cshtml" />
+    <Content Include="Views\promoes\Index.cshtml" />
+    <Content Include="Views\realisations\Create.cshtml" />
+    <Content Include="Views\realisations\Delete.cshtml" />
+    <Content Include="Views\realisations\Details.cshtml" />
+    <Content Include="Views\realisations\Edit.cshtml" />
+    <Content Include="Views\realisations\Index.cshtml" />
+    <Content Include="Views\taches\Create.cshtml" />
+    <Content Include="Views\taches\Delete.cshtml" />
+    <Content Include="Views\taches\Details.cshtml" />
+    <Content Include="Views\taches\Edit.cshtml" />
+    <Content Include="Views\taches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

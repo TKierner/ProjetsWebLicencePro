@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="licence_mmiModelStoreContainer" CdmEntityContainer="licence_mmiEntities">
+    <EntitySetMapping Name="categorie">
+      <EntityTypeMapping TypeName="licence_mmiModel.categorie">
+        <MappingFragment StoreEntitySet="categorie">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="label" ColumnName="label" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="entreprise">
+      <EntityTypeMapping TypeName="licence_mmiModel.entreprise">
+        <MappingFragment StoreEntitySet="entreprise">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fonction">
+      <EntityTypeMapping TypeName="licence_mmiModel.fonction">
+        <MappingFragment StoreEntitySet="fonction">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="label" ColumnName="label" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personne">
+      <EntityTypeMapping TypeName="licence_mmiModel.personne">
+        <MappingFragment StoreEntitySet="personne">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="siteweb" ColumnName="siteweb" />
+          <ScalarProperty Name="parcours" ColumnName="parcours" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="Id_promo" ColumnName="Id_promo" />
+          <ScalarProperty Name="Id_entreprise" ColumnName="Id_entreprise" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projet">
+      <EntityTypeMapping TypeName="licence_mmiModel.projet">
+        <MappingFragment StoreEntitySet="projet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="Id_entreprise" ColumnName="Id_entreprise" />
+          <ScalarProperty Name="Id_promo" ColumnName="Id_promo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="promo">
+      <EntityTypeMapping TypeName="licence_mmiModel.promo">
+        <MappingFragment StoreEntitySet="promo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="annee" ColumnName="annee" />
+          <ScalarProperty Name="theme" ColumnName="theme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="realisation">
+      <EntityTypeMapping TypeName="licence_mmiModel.realisation">
+        <MappingFragment StoreEntitySet="realisation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tache">
+      <EntityTypeMapping TypeName="licence_mmiModel.tache">
+        <MappingFragment StoreEntitySet="tache">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="Id_projet" ColumnName="Id_projet" />
+          <ScalarProperty Name="valeur" ColumnName="valeur" />
+          <ScalarProperty Name="startedAt" ColumnName="startedAt" />
+          <ScalarProperty Name="EndedAt" ColumnName="EndedAt" />
+          <ScalarProperty Name="Id_categorie" ColumnName="Id_categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="personne_fonction" TypeName="licence_mmiModel.personne_fonction" StoreEntitySet="personne_fonction">
+      <EndProperty Name="fonction">
+        <ScalarProperty Name="Id" ColumnName="Id_fonction" />
+      </EndProperty>
+      <EndProperty Name="personne">
+        <ScalarProperty Name="Id" ColumnName="Id_personne" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="personne_projet" TypeName="licence_mmiModel.personne_projet" StoreEntitySet="personne_projet">
+      <EndProperty Name="personne">
+        <ScalarProperty Name="Id" ColumnName="Id_personne" />
+      </EndProperty>
+      <EndProperty Name="projet">
+        <ScalarProperty Name="Id" ColumnName="Id_projet" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="personne_realisation" TypeName="licence_mmiModel.personne_realisation" StoreEntitySet="personne_realisation">
+      <EndProperty Name="personne">
+        <ScalarProperty Name="Id" ColumnName="Id_personne" />
+      </EndProperty>
+      <EndProperty Name="realisation">
+        <ScalarProperty Name="Id" ColumnName="Id_realisation" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ProjetsWebLicencePro.Models.personne>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.siteweb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.parcours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.birthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entreprise.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.promo.theme)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pwd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.siteweb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.parcours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entreprise.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.promo.theme)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
