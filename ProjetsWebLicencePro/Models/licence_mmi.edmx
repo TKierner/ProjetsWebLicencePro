@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="licence_mmiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categorie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="label" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="entreprise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="logo" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="fonction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="label" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personne">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="50" />
+          <Property Name="pwd" Type="varchar(max)" />
+          <Property Name="prenom" Type="varchar" MaxLength="50" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="siteweb" Type="varchar" MaxLength="50" />
+          <Property Name="parcours" Type="varchar" MaxLength="50" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="Id_promo" Type="int" />
+          <Property Name="Id_entreprise" Type="int" />
+        </EntityType>
+        <EntityType Name="personne_fonction">
+          <Key>
+            <PropertyRef Name="Id_fonction" />
+            <PropertyRef Name="Id_personne" />
+          </Key>
+          <Property Name="Id_fonction" Type="int" Nullable="false" />
+          <Property Name="Id_personne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personne_projet">
+          <Key>
+            <PropertyRef Name="Id_personne" />
+            <PropertyRef Name="Id_projet" />
+          </Key>
+          <Property Name="Id_personne" Type="int" Nullable="false" />
+          <Property Name="Id_projet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personne_realisation">
+          <Key>
+            <PropertyRef Name="Id_realisation" />
+            <PropertyRef Name="Id_personne" />
+          </Key>
+          <Property Name="Id_realisation" Type="int" Nullable="false" />
+          <Property Name="Id_personne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="projet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar(max)" />
+          <Property Name="mail" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="text" />
+          <Property Name="logo" Type="varchar(max)" />
+          <Property Name="Id_entreprise" Type="int" />
+          <Property Name="Id_promo" Type="int" />
+        </EntityType>
+        <EntityType Name="promo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="annee" Type="int" />
+          <Property Name="theme" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="realisation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="createdAt" Type="date" />
+        </EntityType>
+        <EntityType Name="tache">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="Id_projet" Type="int" />
+          <Property Name="valeur" Type="int" />
+          <Property Name="startedAt" Type="date" />
+          <Property Name="EndedAt" Type="date" />
+          <Property Name="Id_categorie" Type="int" />
+        </EntityType>
+        <Association Name="FK_personne_entreprise">
+          <End Role="entreprise" Type="Self.entreprise" Multiplicity="0..1" />
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne">
+              <PropertyRef Name="Id_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_fonction_f">
+          <End Role="fonction" Type="Self.fonction" Multiplicity="1" />
+          <End Role="personne_fonction" Type="Self.personne_fonction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fonction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne_fonction">
+              <PropertyRef Name="Id_fonction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_fonction_p">
+          <End Role="personne" Type="Self.personne" Multiplicity="1" />
+          <End Role="personne_fonction" Type="Self.personne_fonction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne_fonction">
+              <PropertyRef Name="Id_personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_projet_p">
+          <End Role="personne" Type="Self.personne" Multiplicity="1" />
+          <End Role="personne_projet" Type="Self.personne_projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne_projet">
+              <PropertyRef Name="Id_personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_projet_pj">
+          <End Role="projet" Type="Self.projet" Multiplicity="1" />
+          <End Role="personne_projet" Type="Self.personne_projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne_projet">
+              <PropertyRef Name="Id_projet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_promo">
+          <End Role="promo" Type="Self.promo" Multiplicity="0..1" />
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="promo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne">
+              <PropertyRef Name="Id_promo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_realisation_p">
+          <End Role="personne" Type="Self.personne" Multiplicity="1" />
+          <End Role="personne_realisation" Type="Self.personne_realisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne_realisation">
+              <PropertyRef Name="Id_personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_realisation_r">
+          <End Role="realisation" Type="Self.realisation" Multiplicity="1" />
+          <End Role="personne_realisation" Type="Self.personne_realisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="realisation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne_realisation">
+              <PropertyRef Name="Id_realisation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_projet_entreprise">
+          <End Role="entreprise" Type="Self.entreprise" Multiplicity="0..1" />
+          <End Role="projet" Type="Self.projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="projet">
+              <PropertyRef Name="Id_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_projet_promo">
+          <End Role="promo" Type="Self.promo" Multiplicity="0..1" />
+          <End Role="projet" Type="Self.projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="promo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="projet">
+              <PropertyRef Name="Id_promo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_projet">
+          <End Role="projet" Type="Self.projet" Multiplicity="0..1" />
+          <End Role="tache" Type="Self.tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tache">
+              <PropertyRef Name="Id_projet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tache_categorie">
+          <End Role="categorie" Type="Self.categorie" Multiplicity="0..1" />
+          <End Role="tache" Type="Self.tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tache">
+              <PropertyRef Name="Id_categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="licence_mmiModelStoreContainer">
+          <EntitySet Name="categorie" EntityType="Self.categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="entreprise" EntityType="Self.entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fonction" EntityType="Self.fonction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personne" EntityType="Self.personne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personne_fonction" EntityType="Self.personne_fonction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personne_projet" EntityType="Self.personne_projet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personne_realisation" EntityType="Self.personne_realisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="projet" EntityType="Self.projet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="promo" EntityType="Self.promo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="realisation" EntityType="Self.realisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tache" EntityType="Self.tache" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_personne_entreprise" Association="Self.FK_personne_entreprise">
+            <End Role="entreprise" EntitySet="entreprise" />
+            <End Role="personne" EntitySet="personne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_fonction_f" Association="Self.FK_personne_fonction_f">
+            <End Role="fonction" EntitySet="fonction" />
+            <End Role="personne_fonction" EntitySet="personne_fonction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_fonction_p" Association="Self.FK_personne_fonction_p">
+            <End Role="personne" EntitySet="personne" />
+            <End Role="personne_fonction" EntitySet="personne_fonction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_projet_p" Association="Self.FK_personne_projet_p">
+            <End Role="personne" EntitySet="personne" />
+            <End Role="personne_projet" EntitySet="personne_projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_projet_pj" Association="Self.FK_personne_projet_pj">
+            <End Role="projet" EntitySet="projet" />
+            <End Role="personne_projet" EntitySet="personne_projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_promo" Association="Self.FK_personne_promo">
+            <End Role="promo" EntitySet="promo" />
+            <End Role="personne" EntitySet="personne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_realisation_p" Association="Self.FK_personne_realisation_p">
+            <End Role="personne" EntitySet="personne" />
+            <End Role="personne_realisation" EntitySet="personne_realisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_realisation_r" Association="Self.FK_personne_realisation_r">
+            <End Role="realisation" EntitySet="realisation" />
+            <End Role="personne_realisation" EntitySet="personne_realisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_projet_entreprise" Association="Self.FK_projet_entreprise">
+            <End Role="entreprise" EntitySet="entreprise" />
+            <End Role="projet" EntitySet="projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_projet_promo" Association="Self.FK_projet_promo">
+            <End Role="promo" EntitySet="promo" />
+            <End Role="projet" EntitySet="projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_projet" Association="Self.FK_Table_projet">
+            <End Role="projet" EntitySet="projet" />
+            <End Role="tache" EntitySet="tache" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tache_categorie" Association="Self.FK_tache_categorie">
+            <End Role="categorie" EntitySet="categorie" />
+            <End Role="tache" EntitySet="tache" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="licence_mmiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categorie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tache" Relationship="Self.FK_tache_categorie" FromRole="categorie" ToRole="tache" />
+        </EntityType>
+        <EntityType Name="entreprise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personne" Relationship="Self.FK_personne_entreprise" FromRole="entreprise" ToRole="personne" />
+          <NavigationProperty Name="projet" Relationship="Self.FK_projet_entreprise" FromRole="entreprise" ToRole="projet" />
+        </EntityType>
+        <EntityType Name="fonction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personne" Relationship="Self.personne_fonction" FromRole="fonction" ToRole="personne" />
+        </EntityType>
+        <EntityType Name="personne">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="siteweb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parcours" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="Id_promo" Type="Int32" />
+          <Property Name="Id_entreprise" Type="Int32" />
+          <NavigationProperty Name="entreprise" Relationship="Self.FK_personne_entreprise" FromRole="personne" ToRole="entreprise" />
+          <NavigationProperty Name="promo" Relationship="Self.FK_personne_promo" FromRole="personne" ToRole="promo" />
+          <NavigationProperty Name="fonction" Relationship="Self.personne_fonction" FromRole="personne" ToRole="fonction" />
+          <NavigationProperty Name="projet" Relationship="Self.personne_projet" FromRole="personne" ToRole="projet" />
+          <NavigationProperty Name="realisation" Relationship="Self.personne_realisation" FromRole="personne" ToRole="realisation" />
+        </EntityType>
+        <EntityType Name="projet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id_entreprise" Type="Int32" />
+          <Property Name="Id_promo" Type="Int32" />
+          <NavigationProperty Name="entreprise" Relationship="Self.FK_projet_entreprise" FromRole="projet" ToRole="entreprise" />
+          <NavigationProperty Name="promo" Relationship="Self.FK_projet_promo" FromRole="projet" ToRole="promo" />
+          <NavigationProperty Name="tache" Relationship="Self.FK_Table_projet" FromRole="projet" ToRole="tache" />
+          <NavigationProperty Name="personne" Relationship="Self.personne_projet" FromRole="projet" ToRole="personne" />
+        </EntityType>
+        <EntityType Name="promo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="annee" Type="Int32" />
+          <Property Name="theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personne" Relationship="Self.FK_personne_promo" FromRole="promo" ToRole="personne" />
+          <NavigationProperty Name="projet" Relationship="Self.FK_projet_promo" FromRole="promo" ToRole="projet" />
+        </EntityType>
+        <EntityType Name="realisation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="personne" Relationship="Self.personne_realisation" FromRole="realisation" ToRole="personne" />
+        </EntityType>
+        <EntityType Name="tache">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id_projet" Type="Int32" />
+          <Property Name="valeur" Type="Int32" />
+          <Property Name="startedAt" Type="DateTime" Precision="0" />
+          <Property Name="EndedAt" Type="DateTime" Precision="0" />
+          <Property Name="Id_categorie" Type="Int32" />
+          <NavigationProperty Name="categorie" Relationship="Self.FK_tache_categorie" FromRole="tache" ToRole="categorie" />
+          <NavigationProperty Name="projet" Relationship="Self.FK_Table_projet" FromRole="tache" ToRole="projet" />
+        </EntityType>
+        <Association Name="FK_tache_categorie">
+          <End Role="categorie" Type="Self.categorie" Multiplicity="0..1" />
+          <End Role="tache" Type="Self.tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tache">
+              <PropertyRef Name="Id_categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_entreprise">
+          <End Role="entreprise" Type="Self.entreprise" Multiplicity="0..1" />
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne">
+              <PropertyRef Name="Id_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_projet_entreprise">
+          <End Role="entreprise" Type="Self.entreprise" Multiplicity="0..1" />
+          <End Role="projet" Type="Self.projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="projet">
+              <PropertyRef Name="Id_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personne_promo">
+          <End Role="promo" Type="Self.promo" Multiplicity="0..1" />
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="promo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="personne">
+              <PropertyRef Name="Id_promo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_projet_promo">
+          <End Role="promo" Type="Self.promo" Multiplicity="0..1" />
+          <End Role="projet" Type="Self.projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="promo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="projet">
+              <PropertyRef Name="Id_promo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_projet">
+          <End Role="projet" Type="Self.projet" Multiplicity="0..1" />
+          <End Role="tache" Type="Self.tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tache">
+              <PropertyRef Name="Id_projet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personne_fonction">
+          <End Role="fonction" Type="Self.fonction" Multiplicity="*" />
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+        </Association>
+        <Association Name="personne_projet">
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+          <End Role="projet" Type="Self.projet" Multiplicity="*" />
+        </Association>
+        <Association Name="personne_realisation">
+          <End Role="personne" Type="Self.personne" Multiplicity="*" />
+          <End Role="realisation" Type="Self.realisation" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="licence_mmiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorie" EntityType="Self.categorie" />
+          <EntitySet Name="entreprise" EntityType="Self.entreprise" />
+          <EntitySet Name="fonction" EntityType="Self.fonction" />
+          <EntitySet Name="personne" EntityType="Self.personne" />
+          <EntitySet Name="projet" EntityType="Self.projet" />
+          <EntitySet Name="promo" EntityType="Self.promo" />
+          <EntitySet Name="realisation" EntityType="Self.realisation" />
+          <EntitySet Name="tache" EntityType="Self.tache" />
+          <AssociationSet Name="FK_tache_categorie" Association="Self.FK_tache_categorie">
+            <End Role="categorie" EntitySet="categorie" />
+            <End Role="tache" EntitySet="tache" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_entreprise" Association="Self.FK_personne_entreprise">
+            <End Role="entreprise" EntitySet="entreprise" />
+            <End Role="personne" EntitySet="personne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_projet_entreprise" Association="Self.FK_projet_entreprise">
+            <End Role="entreprise" EntitySet="entreprise" />
+            <End Role="projet" EntitySet="projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personne_promo" Association="Self.FK_personne_promo">
+            <End Role="promo" EntitySet="promo" />
+            <End Role="personne" EntitySet="personne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_projet_promo" Association="Self.FK_projet_promo">
+            <End Role="promo" EntitySet="promo" />
+            <End Role="projet" EntitySet="projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_projet" Association="Self.FK_Table_projet">
+            <End Role="projet" EntitySet="projet" />
+            <End Role="tache" EntitySet="tache" />
+          </AssociationSet>
+          <AssociationSet Name="personne_fonction" Association="Self.personne_fonction">
+            <End Role="fonction" EntitySet="fonction" />
+            <End Role="personne" EntitySet="personne" />
+          </AssociationSet>
+          <AssociationSet Name="personne_projet" Association="Self.personne_projet">
+            <End Role="personne" EntitySet="personne" />
+            <End Role="projet" EntitySet="projet" />
+          </AssociationSet>
+          <AssociationSet Name="personne_realisation" Association="Self.personne_realisation">
+            <End Role="personne" EntitySet="personne" />
+            <End Role="realisation" EntitySet="realisation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="licence_mmiModelStoreContainer" CdmEntityContainer="licence_mmiEntities">
+          <EntitySetMapping Name="categorie">
+            <EntityTypeMapping TypeName="licence_mmiModel.categorie">
+              <MappingFragment StoreEntitySet="categorie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="label" ColumnName="label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="entreprise">
+            <EntityTypeMapping TypeName="licence_mmiModel.entreprise">
+              <MappingFragment StoreEntitySet="entreprise">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fonction">
+            <EntityTypeMapping TypeName="licence_mmiModel.fonction">
+              <MappingFragment StoreEntitySet="fonction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="label" ColumnName="label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personne">
+            <EntityTypeMapping TypeName="licence_mmiModel.personne">
+              <MappingFragment StoreEntitySet="personne">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="siteweb" ColumnName="siteweb" />
+                <ScalarProperty Name="parcours" ColumnName="parcours" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="Id_promo" ColumnName="Id_promo" />
+                <ScalarProperty Name="Id_entreprise" ColumnName="Id_entreprise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projet">
+            <EntityTypeMapping TypeName="licence_mmiModel.projet">
+              <MappingFragment StoreEntitySet="projet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="Id_entreprise" ColumnName="Id_entreprise" />
+                <ScalarProperty Name="Id_promo" ColumnName="Id_promo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="promo">
+            <EntityTypeMapping TypeName="licence_mmiModel.promo">
+              <MappingFragment StoreEntitySet="promo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="annee" ColumnName="annee" />
+                <ScalarProperty Name="theme" ColumnName="theme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="realisation">
+            <EntityTypeMapping TypeName="licence_mmiModel.realisation">
+              <MappingFragment StoreEntitySet="realisation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tache">
+            <EntityTypeMapping TypeName="licence_mmiModel.tache">
+              <MappingFragment StoreEntitySet="tache">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Id_projet" ColumnName="Id_projet" />
+                <ScalarProperty Name="valeur" ColumnName="valeur" />
+                <ScalarProperty Name="startedAt" ColumnName="startedAt" />
+                <ScalarProperty Name="EndedAt" ColumnName="EndedAt" />
+                <ScalarProperty Name="Id_categorie" ColumnName="Id_categorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="personne_fonction" TypeName="licence_mmiModel.personne_fonction" StoreEntitySet="personne_fonction">
+            <EndProperty Name="fonction">
+              <ScalarProperty Name="Id" ColumnName="Id_fonction" />
+            </EndProperty>
+            <EndProperty Name="personne">
+              <ScalarProperty Name="Id" ColumnName="Id_personne" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="personne_projet" TypeName="licence_mmiModel.personne_projet" StoreEntitySet="personne_projet">
+            <EndProperty Name="personne">
+              <ScalarProperty Name="Id" ColumnName="Id_personne" />
+            </EndProperty>
+            <EndProperty Name="projet">
+              <ScalarProperty Name="Id" ColumnName="Id_projet" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="personne_realisation" TypeName="licence_mmiModel.personne_realisation" StoreEntitySet="personne_realisation">
+            <EndProperty Name="personne">
+              <ScalarProperty Name="Id" ColumnName="Id_personne" />
+            </EndProperty>
+            <EndProperty Name="realisation">
+              <ScalarProperty Name="Id" ColumnName="Id_realisation" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
