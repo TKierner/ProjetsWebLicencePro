@@ -12,7 +12,7 @@ namespace ProjetsWebLicencePro.Controllers
 {
     public class projetsController : Controller
     {
-        private licence_mmiEntities db = new licence_mmiEntities();
+        private licence_mmiEntities2 db = new licence_mmiEntities2();
 
         // GET: projets
         public ActionResult Index()
@@ -42,6 +42,18 @@ namespace ProjetsWebLicencePro.Controllers
             ViewBag.Id_entreprise = new SelectList(db.entreprise, "Id", "nom");
             ViewBag.Id_promo = new SelectList(db.promo, "Id", "theme");
             return View();
+        }
+
+        public ActionResult RandomList()
+        {
+            var projet = db.projet.Include(p => p.entreprise).Include(p => p.promo).Take(4);
+            return PartialView(projet.ToList());
+        }
+
+        public ActionResult ListProjets()
+        {
+            var projet = db.projet.Include(p => p.entreprise).Include(p => p.promo).Take(4);
+            return PartialView(projet.ToList());
         }
 
         // POST: projets/Create

@@ -12,7 +12,7 @@ namespace ProjetsWebLicencePro.Controllers
 {
     public class categoriesController : Controller
     {
-        private licence_mmiEntities db = new licence_mmiEntities();
+        private licence_mmiEntities2 db = new licence_mmiEntities2();
 
         // GET: categories
         public ActionResult Index()

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ProjetsWebLicencePro.Models.projet>
+
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @Html.ActionLink(item.nom, "Details", "projets", new { id = item.Id }, null)
+        </li>
+    }
+</ul>

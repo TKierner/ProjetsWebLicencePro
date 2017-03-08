@@ -13,10 +13,10 @@ namespace ProjetsWebLicencePro.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class licence_mmiEntities : DbContext
+    public partial class licence_mmiEntities2 : DbContext
     {
-        public licence_mmiEntities()
-            : base("name=licence_mmiEntities")
+        public licence_mmiEntities2()
+            : base("name=licence_mmiEntities2")
         {
         }
     

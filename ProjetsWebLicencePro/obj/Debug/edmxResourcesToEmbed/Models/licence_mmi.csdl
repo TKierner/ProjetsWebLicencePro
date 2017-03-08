@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="tache" Relationship="Self.FK_tache_categorie" FromRole="categorie" ToRole="tache" />
   </EntityType>
@@ -12,7 +12,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="personne" Relationship="Self.FK_personne_entreprise" FromRole="entreprise" ToRole="personne" />
@@ -22,7 +22,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="personne" Relationship="Self.personne_fonction" FromRole="fonction" ToRole="personne" />
   </EntityType>
@@ -30,7 +30,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -50,7 +50,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -67,7 +67,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="annee" Type="Int32" />
     <Property Name="theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="personne" Relationship="Self.FK_personne_promo" FromRole="promo" ToRole="personne" />
@@ -77,7 +77,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="createdAt" Type="DateTime" Precision="0" />
@@ -87,7 +87,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Id_projet" Type="Int32" />
     <Property Name="valeur" Type="Int32" />
@@ -181,7 +181,7 @@
     <End Role="personne" Type="Self.personne" Multiplicity="*" />
     <End Role="realisation" Type="Self.realisation" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="licence_mmiEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="licence_mmiEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="categorie" EntityType="Self.categorie" />
     <EntitySet Name="entreprise" EntityType="Self.entreprise" />
     <EntitySet Name="fonction" EntityType="Self.fonction" />

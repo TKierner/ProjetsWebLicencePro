@@ -4,14 +4,14 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="label" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="entreprise">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nom" Type="varchar" MaxLength="50" />
     <Property Name="logo" Type="varchar(max)" />
   </EntityType>
@@ -19,14 +19,14 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="label" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="personne">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="mail" Type="varchar" MaxLength="50" />
     <Property Name="pwd" Type="varchar(max)" />
     <Property Name="prenom" Type="varchar" MaxLength="50" />
@@ -65,7 +65,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nom" Type="varchar" MaxLength="50" />
     <Property Name="url" Type="varchar(max)" />
     <Property Name="mail" Type="varchar" MaxLength="50" />
@@ -78,7 +78,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="annee" Type="int" />
     <Property Name="theme" Type="varchar" MaxLength="50" />
   </EntityType>
@@ -86,7 +86,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nom" Type="varchar" MaxLength="50" />
     <Property Name="description" Type="varchar(max)" />
     <Property Name="createdAt" Type="date" />
@@ -95,7 +95,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="description" Type="text" />
     <Property Name="Id_projet" Type="int" />
     <Property Name="valeur" Type="int" />

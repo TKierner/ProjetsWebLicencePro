@@ -213,45 +213,45 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\categorie.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\entreprise.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\fonction.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\licence_mmi.Context.cs">
+    <Compile Include="Models\licence_MMI.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>licence_mmi.Context.tt</DependentUpon>
+      <DependentUpon>licence_MMI.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\licence_mmi.cs">
+    <Compile Include="Models\licence_MMI.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\licence_mmi.Designer.cs">
+    <Compile Include="Models\licence_MMI.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>licence_mmi.edmx</DependentUpon>
+      <DependentUpon>licence_MMI.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\personne.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\projet.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\promo.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\realisation.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tache.cs">
-      <DependentUpon>licence_mmi.tt</DependentUpon>
+      <DependentUpon>licence_MMI.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -267,15 +267,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\licence_mmi.Context.tt">
+    <Content Include="Models\licence_MMI.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>licence_mmi.edmx</DependentUpon>
-      <LastGenOutput>licence_mmi.Context.cs</LastGenOutput>
+      <DependentUpon>licence_MMI.edmx</DependentUpon>
+      <LastGenOutput>licence_MMI.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\licence_mmi.tt">
+    <Content Include="Models\licence_MMI.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>licence_mmi.edmx</DependentUpon>
-      <LastGenOutput>licence_mmi.cs</LastGenOutput>
+      <DependentUpon>licence_MMI.edmx</DependentUpon>
+      <LastGenOutput>licence_MMI.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -284,12 +284,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\licence_mmi.edmx">
+    <EntityDeploy Include="Models\licence_MMI.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>licence_mmi.Designer.cs</LastGenOutput>
+      <LastGenOutput>licence_MMI.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\licence_mmi.edmx.diagram">
-      <DependentUpon>licence_mmi.edmx</DependentUpon>
+    <Content Include="Models\licence_MMI.edmx.diagram">
+      <DependentUpon>licence_MMI.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -377,6 +377,8 @@
     <Content Include="Views\taches\Details.cshtml" />
     <Content Include="Views\taches\Edit.cshtml" />
     <Content Include="Views\taches\Index.cshtml" />
+    <Content Include="Views\projets\ListProjets.cshtml" />
+    <Content Include="Views\projets\RandomList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
